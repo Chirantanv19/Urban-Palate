@@ -2,6 +2,7 @@ import { supabase } from "@/lib/supabase";
 import { Plus, Edit, Trash2, Eye, EyeOff } from "lucide-react";
 import Link from "next/link";
 
+export const revalidate = 0; // This forces the page to fetch fresh data every time
 export default async function MenuManagementPage() {
   const { data: items } = await supabase
     .from("menu_items")
