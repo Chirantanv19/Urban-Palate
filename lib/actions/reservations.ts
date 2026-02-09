@@ -14,6 +14,7 @@ export async function createReservation(formData: any) {
                 email: formData.email,
                 phone: formData.phone || "0000000000", // Fallback if phone isn't in schema
                 reservation_date: formData.date,
+                special_requests: formData.special_requests,
                 reservation_time: "19:00", // Hardcoded for testing
                 guests: Number(formData.guests),
                 status: "pending",

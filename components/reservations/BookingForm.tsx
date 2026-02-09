@@ -13,6 +13,7 @@ const formSchema = z.object({
   email: z.string().email("Invalid email address"),
   date: z.string().min(1, "Select a date"),
   guests: z.coerce.number().min(1, "At least 1 guest required"),
+  special_requests: z.string()
 });
 
 export default function BookingForm() {
@@ -91,6 +92,17 @@ export default function BookingForm() {
               <input
                 type="number"
                 {...register("guests")}
+                className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-white outline-none focus:border-primary-500/50 focus:bg-white/10 transition-all"
+              />
+            </div>
+          </div>
+          {/* massage fild */}
+          <div>
+            <label className="text-[10px] uppercase tracking-widest text-primary-500 font-black mb-2 block ml-1">Special Requests</label>
+            <div className="relative">
+              <input
+                type="text"
+                {...register("special_requests")}
                 className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-white outline-none focus:border-primary-500/50 focus:bg-white/10 transition-all"
               />
             </div>

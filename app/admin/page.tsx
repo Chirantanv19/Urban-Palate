@@ -9,6 +9,8 @@ export default async function AdminDashboard() {
         .select("*")
         .order("reservation_date", { ascending: false });
 
+    console.log(reservations);
+
     if (error) return <div className="p-20 text-center">Connection error.</div>;
 
     return (
@@ -66,6 +68,7 @@ export default async function AdminDashboard() {
                                     <th className="px-8 py-4">Guest</th>
                                     <th className="px-8 py-4">Schedule</th>
                                     <th className="px-8 py-4">Party Size</th>
+                                    <th className="px-8 py-4">Special Request</th>
                                     <th className="px-8 py-4">Status</th>
                                     <th className="px-8 py-4 text-right">Actions</th>
                                 </tr>
@@ -81,13 +84,16 @@ export default async function AdminDashboard() {
                                             <p className="text-sm font-medium text-slate-600">{res.reservation_date}</p>
                                             <p className="text-xs font-bold text-primary-600 italic">{res.reservation_time}</p>
                                         </td>
-                                        <td className="px-8 py-5 text-slate-600 font-medium">
-                                            {res.guests} Pax
+                                        <td className="px-8 py-5 text-slate-600 font-sans">
+                                            {res.guests} Guests
+                                        </td>
+                                        <td className="px-8 py-5">
+                                            <p className="text-xs text-slate-400">{res.special_requests || "None"}</p>
                                         </td>
                                         <td className="px-8 py-5">
                                             <span className={`px-2.5 py-1 rounded-lg text-[10px] font-bold uppercase tracking-tight ${res.status === 'confirmed' ? 'bg-emerald-100 text-emerald-700' :
-                                                    res.status === 'cancelled' ? 'bg-red-100 text-red-700' :
-                                                        'bg-amber-100 text-amber-700'
+                                                res.status === 'cancelled' ? 'bg-red-100 text-red-700' :
+                                                    'bg-amber-100 text-amber-700'
                                                 }`}>
                                                 {res.status}
                                             </span>
