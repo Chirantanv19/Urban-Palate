@@ -9,7 +9,7 @@ export default async function AdminDashboard() {
         .select("*")
         .order("reservation_date", { ascending: false });
 
-    console.log(reservations);
+ 
 
     if (error) return <div className="p-20 text-center">Connection error.</div>;
 

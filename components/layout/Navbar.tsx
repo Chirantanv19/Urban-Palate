@@ -22,6 +22,7 @@ export default function Navbar() {
     const navLinks = [
         { name: "Home", href: "/" },
         { name: "Menu", href: "/menu" },
+        { name: "Reviews", href: "/reviews" },
     ];
 
     // Dynamic colors based on page and scroll
