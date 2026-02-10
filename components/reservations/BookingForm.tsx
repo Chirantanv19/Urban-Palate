@@ -12,6 +12,7 @@ const formSchema = z.object({
   name: z.string().min(1, "Please enter your name"),
   email: z.string().email("Invalid email address"),
   date: z.string().min(1, "Select a date"),
+  reservation_time: z.string().min(1, "Select a time"),
   guests: z.coerce.number().min(1, "At least 1 guest required"),
   special_requests: z.string()
 });
@@ -61,19 +62,27 @@ export default function BookingForm() {
             />
             {errors.name && <p className="text-accent-500 text-[10px] mt-2 ml-2 uppercase font-bold">{errors.name.message as string}</p>}
           </div>
+          {/* Email Field */}
+          <div>
+            <label className="text-[10px] uppercase tracking-widest text-primary-500 font-black mb-2 block ml-1">Email</label>
+            <input
+              {...register("email")}
+              placeholder="concierge@lumiere.com"
+              className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-white placeholder:text-white/20 outline-none focus:border-primary-500/50 focus:bg-white/10 transition-all"
+            />
+            {errors.email && <p className="text-accent-500 text-[10px] mt-2 ml-2 uppercase font-bold">{errors.email.message as string}</p>}
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Email Field */}
+            {/* Time Field */}
             <div>
-              <label className="text-[10px] uppercase tracking-widest text-primary-500 font-black mb-2 block ml-1">Email</label>
+              <label className="text-[10px] uppercase tracking-widest text-primary-500 font-black mb-2 block ml-1">Time</label>
               <input
-                {...register("email")}
-                placeholder="concierge@lumiere.com"
-                className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-white placeholder:text-white/20 outline-none focus:border-primary-500/50 focus:bg-white/10 transition-all"
+                type="time"
+                {...register("reservation_time")}
+                className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-white outline-none focus:border-primary-500/50 focus:bg-white/10 transition-all [color-scheme:dark]"
               />
-              {errors.email && <p className="text-accent-500 text-[10px] mt-2 ml-2 uppercase font-bold">{errors.email.message as string}</p>}
             </div>
-
             {/* Date Field */}
             <div>
               <label className="text-[10px] uppercase tracking-widest text-primary-500 font-black mb-2 block ml-1">Date</label>
@@ -100,10 +109,11 @@ export default function BookingForm() {
           <div>
             <label className="text-[10px] uppercase tracking-widest text-primary-500 font-black mb-2 block ml-1">Special Requests</label>
             <div className="relative">
-              <input
-                type="text"
+              <textarea
+                placeholder="Any special requests or dietary restrictions?"
+                rows={4}
                 {...register("special_requests")}
-                className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-white outline-none focus:border-primary-500/50 focus:bg-white/10 transition-all"
+                className="w-full bg-white/5 border placeholder:text-white/20 border-white/10 rounded-2xl px-5 py-4 text-white outline-none focus:border-primary-500/50 focus:bg-white/10 transition-all"
               />
             </div>
           </div>
